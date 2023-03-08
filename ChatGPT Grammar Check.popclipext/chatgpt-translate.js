@@ -8,7 +8,7 @@ const checkGrammar = async (input, options) => {
     baseURL: "https://api.openai.com/v1",
     headers: { Authorization: `Bearer ${options.apikey}` },
   });
-  const prefix = "Please correct the grammar and polish the following sentences, do not provide any translation, comments, or notes, and use the same language as input:\n\n";
+  const prefix = "请将以下内容翻译成中文，如果内容本身是中文则翻译成英文:\n\n";
   // send the whole message history to OpenAI
   const { data } = await openai.post("chat/completions", {
     model: "gpt-3.5-turbo",
@@ -25,6 +25,6 @@ const checkGrammar = async (input, options) => {
 };
 // export the actions
 exports.actions = [{
-  title: "ChatGPT: Grammar Check",
+  title: "ChatGPT: Translate",
   code: checkGrammar,
 }];
